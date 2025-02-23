@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import CustomModal from "./CustomModal";
-
 import "@testing-library/jest-dom";
 
 describe("CustomModal Component", () => {

@@ -1,4 +1,4 @@
-import { yupResolver } from "@hookform/resolvers/yup"; // Import yupResolver
+import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { CustomFormProps } from "../../../types";
@@ -11,7 +11,7 @@ const CustomForm: React.FC<CustomFormProps> = ({ fields, validationSchema, onSub
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: validationSchema ? yupResolver(validationSchema) : undefined, // Use yupResolver
+    resolver: validationSchema ? yupResolver(validationSchema) : undefined,
     defaultValues,
   });
 
@@ -34,7 +34,7 @@ const CustomForm: React.FC<CustomFormProps> = ({ fields, validationSchema, onSub
           <Controller
             name={field.name}
             control={control}
-            defaultValue={defaultValues[field.name] || ""} // Ensure controlled component
+            defaultValue={defaultValues[field.name] || ""}
             render={({ field: controllerField }) => (
               <>
                 {field.type === "select" ? (

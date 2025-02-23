@@ -44,8 +44,6 @@ const PostList: React.FC<PostListProps> = ({ posts, authors }) => {
       cell: ({ getValue }) => {
         const dateValue = getValue() as string;
         const parsedDate = new Date(dateValue);
-
-        // Check if the date is valid before attempting to format it
         if (isNaN(parsedDate.getTime())) {
           return "زمان نامعتبر";
         }

@@ -1,25 +1,14 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import PostList from "./PostList";
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-
-import useIsAdmin from "../../../hooks/useIsAdmin";
-import { postApi } from "../../../redux/services/postApi";
 
 jest.mock("../../../hooks/useIsAdmin", () => jest.fn());
+jest.mock("../../../redux/services/postApi", () => ({
+  useDeletePostMutation: jest.fn(() => [jest.fn()]),
+  useEditPostMutation: jest.fn(() => [jest.fn()]),
+}));
 
 describe("PostList Component", () => {
-  let store: ReturnType<typeof configureStore>;
-
-  beforeEach(() => {
-    store = configureStore({
-      reducer: {
-        [postApi.reducerPath]: postApi.reducer,
-      },
-    });
-  });
-
   const mockPosts = [
     {
       id: "1",
@@ -32,40 +21,30 @@ describe("PostList Component", () => {
   const mockAuthors = [{ id: "1", name: "Alice" }];
 
   test("renders without edit/delete if user is not admin", () => {
+    const useIsAdmin = require("../../../hooks/useIsAdmin");
     (useIsAdmin as jest.Mock).mockReturnValue(false);
 
-    render(
-      <Provider store={store}>
-        <PostList posts={mockPosts} authors={mockAuthors} />
-      </Provider>
-    );
+    render(<PostList posts={mockPosts} authors={mockAuthors} />);
 
     expect(screen.queryByText(/ویرایش/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/حذف/i)).not.toBeInTheDocument();
   });
 
   test("shows edit/delete columns if user is admin", () => {
+    const useIsAdmin = require("../../../hooks/useIsAdmin");
     (useIsAdmin as jest.Mock).mockReturnValue(true);
 
-    render(
-      <Provider store={store}>
-        <PostList posts={mockPosts} authors={mockAuthors} />
-      </Provider>
-    );
+    render(<PostList posts={mockPosts} authors={mockAuthors} />);
 
     expect(screen.getByText(/ویرایش/i)).toBeInTheDocument();
     expect(screen.getByText(/حذف/i)).toBeInTheDocument();
   });
 
   test("opens EditPost modal on edit click", () => {
+    const useIsAdmin = require("../../../hooks/useIsAdmin");
     (useIsAdmin as jest.Mock).mockReturnValue(true);
 
-    render(
-      <Provider store={store}>
-        <PostList posts={mockPosts} authors={mockAuthors} />
-      </Provider>
-    );
-
+    render(<PostList posts={mockPosts} authors={mockAuthors} />);
     fireEvent.click(screen.getByText(/ویرایش/i));
 
     expect(screen.getByText(/ویرایش پست/i)).toBeInTheDocument();

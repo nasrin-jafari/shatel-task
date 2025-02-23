@@ -3,11 +3,10 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Posts from "./Posts";
 
-// Mock the necessary hooks from postApi and userApi
 jest.mock("../../redux/services/postApi", () => ({
   useGetPostsQuery: jest.fn(),
   useAddPostMutation: jest.fn(),
-  useDeletePostMutation: jest.fn(), // Add the mock for useDeletePostMutation
+  useDeletePostMutation: jest.fn(),
 }));
 
 jest.mock("../../redux/services/userApi", () => ({
@@ -22,7 +21,7 @@ describe("Posts Component", () => {
     jest.clearAllMocks();
 
     (useAddPostMutation as jest.Mock).mockReturnValue([jest.fn(), {}]);
-    (useDeletePostMutation as jest.Mock).mockReturnValue([jest.fn(), {}]); // Mock return value for deletePost
+    (useDeletePostMutation as jest.Mock).mockReturnValue([jest.fn(), {}]);
   });
 
   test("shows loading state when posts are loading", () => {

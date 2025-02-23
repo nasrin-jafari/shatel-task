@@ -30,6 +30,7 @@
     "@hookform/resolvers": "^4.1.0",
     "@reduxjs/toolkit": "^2.5.1",
     "@tanstack/react-table": "^8.21.2",
+    "cross-fetch": "^4.1.0",
     "date-fns-jalali": "^4.1.0-0",
     "nodemon": "^3.1.9",
     "react": "^19.0.0",

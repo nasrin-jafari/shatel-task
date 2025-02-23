@@ -1,20 +1,21 @@
 import { fetchBaseQuery, FetchBaseQueryError, BaseQueryApi, FetchArgs } from "@reduxjs/toolkit/query/react";
 import { toast } from "react-toastify";
+import fetch from "cross-fetch";
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:8000",
+  fetchFn: fetch,
   prepareHeaders: (headers) => {
     const token = localStorage.getItem("token");
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
-      return headers;
     }
     return headers;
   },
 });
+
 const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, extraOptions: Record<string, any> = {}) => {
   const token = localStorage.getItem("token");
-  console.log(token && typeof args === "object" && "url" in args && args.url === "/login");
 
   if (token && typeof args === "object" && "url" in args && args.url === "/login") {
     toast.info("شما قبلاً لاگین کرده‌اید!");
