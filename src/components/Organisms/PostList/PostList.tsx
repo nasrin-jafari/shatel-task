@@ -47,7 +47,6 @@ const PostList: React.FC<PostListProps> = ({ posts, authors }) => {
         if (isNaN(parsedDate.getTime())) {
           return "زمان نامعتبر";
         }
-
         return formatDistanceToNow(parsedDate, { addSuffix: true });
       },
     },

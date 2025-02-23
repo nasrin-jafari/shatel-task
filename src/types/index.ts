@@ -4,7 +4,10 @@ export interface Author {
   id: string;
   name: string;
 }
-
+export interface UserData {
+  name?: string;
+  username?: string;
+}
 export interface Post {
   id: string;
   title: string;
@@ -22,11 +25,6 @@ export interface SearchPostProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface UserProfile {
-  id: string;
-  username: string;
-  role: string;
-}
 export interface EditPostProps {
   post: {
     id: string;
@@ -45,7 +43,7 @@ export interface AddPostProps {
   authors: { id: string; name: string }[];
 }
 
-//table 
+//table
 export interface CustomTableProps<T extends object> {
   data: T[];
   columns: ColumnDef<T>[];
@@ -60,6 +58,7 @@ export type FieldType = {
   type: "text" | "email" | "password" | "number" | "checkbox" | "textarea" | "select" | "multiselect" | string;
   options?: { label: string; value: string }[];
 };
+
 export type CustomFormProps = {
   fields: FieldType[];
   validationSchema?: any;
@@ -75,7 +74,6 @@ export interface CustomModalProps {
   onClose: () => void;
   children: React.ReactNode;
 }
-
 
 //request type
 export interface User {

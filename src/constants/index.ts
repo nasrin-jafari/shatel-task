@@ -16,7 +16,7 @@ export const postFields = (authors: { id: string; name: string }[]) => [
 ];
 
 export const loginFields = [
-  { name: "username", label: "نام کاربری", type: "text", col: 1 },
-  { name: "password", label: "رمز عبور", type: "password", col: 1 },
+  { name: "username", label: "نام کاربری", type: "text" },
+  { name: "password", label: "رمز عبور", type: "password" },
 ];
 export const rowsPerPageOptions = [5, 8, 10];

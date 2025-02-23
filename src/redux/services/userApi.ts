@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import baseQueryWithReauth from "./apiBase";
-import { Author, UserProfile } from "../../types";
+import { Author } from "../../types";
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: baseQueryWithReauth,
@@ -8,10 +8,7 @@ export const userApi = createApi({
     getAuthors: builder.query<Author[], void>({
       query: () => "/authors",
     }),
-    getProfile: builder.query<UserProfile, string>({
-      query: (userId) => `/profile?id=${userId}`,
-    }),
   }),
 });
 
-export const { useGetAuthorsQuery, useGetProfileQuery } = userApi;
+export const { useGetAuthorsQuery } = userApi;

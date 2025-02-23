@@ -8,14 +8,7 @@ const SearchPost: React.FC<SearchPostProps> = ({ value, onChange }) => {
       placeholder="جستجوی عنوان..."
       value={value}
       onChange={onChange}
-      style={{
-        padding: "8px",
-        marginBottom: "12px",
-        width: "100%",
-        maxWidth: "300px",
-        borderRadius: "4px",
-        border: "1px solid #ccc",
-      }}
+      className=" w-full max-w-[300px] p-2 mb-3 border border-gray-300 rounded text-sm  focus:border-primary focus:ring-1 focus:ring-primary outline-none focus:outline-none transition-colors duration-150"
     />
   );
 };

@@ -19,12 +19,12 @@ const CustomTable = <T extends object>({ data, columns, onEdit, onDelete }: Cust
         cell: ({ row }: { row: Row<T> }) => (
           <div className="flex gap-2">
             {onEdit && (
-              <button onClick={() => onEdit(row.original)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+              <button onClick={() => onEdit(row.original)} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
                 ویرایش
               </button>
             )}
             {onDelete && (
-              <button onClick={() => onDelete?.((row.original as any).id)} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+              <button onClick={() => onDelete?.((row.original as any).id)} className="bg-danger hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">
                 حذف
               </button>
             )}
@@ -49,7 +49,7 @@ const CustomTable = <T extends object>({ data, columns, onEdit, onDelete }: Cust
       <table className="min-w-full table-auto border-collapse border border-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="bg-blue-600 text-white text-right">
+            <tr key={headerGroup.id} className="bg-primary text-white text-right">
               {headerGroup.headers.map((header) => (
                 <th key={header.id} className="px-4 py-2 font-semibold border-b-2 border-gray-300">
                   {flexRender(header.column.columnDef.header, header.getContext())}
@@ -63,7 +63,7 @@ const CustomTable = <T extends object>({ data, columns, onEdit, onDelete }: Cust
             table.getRowModel().rows.map((row, index) => (
               <tr key={row.id} className={`border-b text-right border-gray-300 cursor-pointer transition-colors hover:bg-gray-100 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="p-4 text-gray-800 border-l  border-gray-300 ">
+                  <td key={cell.id} className="p-4 text-gray-800 border-l border-gray-300">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -82,18 +82,18 @@ const CustomTable = <T extends object>({ data, columns, onEdit, onDelete }: Cust
       {data?.length > 1 && (
         <div className="mt-4 flex justify-between items-center px-4">
           <div className="flex items-center gap-2">
-            <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()} className="px-4 py-2 bg-gray-100 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg hover:bg-gray-200 transition">
+            <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()} className="px-4 py-2 bg-gray-100 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg hover:bg-gray-200 transition-colors">
               صفحه قبلی
             </button>
             <span>
               صفحه {table.getState().pagination.pageIndex + 1} از {table.getPageCount()}
             </span>
-            <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()} className="px-4 py-2 bg-gray-100 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg hover:bg-gray-200 transition">
+            <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()} className="px-4 py-2 bg-gray-100 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg hover:bg-gray-200 transition-colors">
               صفحه بعدی
             </button>
           </div>
           <div className="flex items-center gap-2">
-            <label htmlFor="rowsPerPage">صفحه بعدی</label>
+            <label htmlFor="rowsPerPage">تعداد ردیف‌ها</label>
             <select
               id="rowsPerPage"
               value={pagination.pageSize}

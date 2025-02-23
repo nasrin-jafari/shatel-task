@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { postFields } from "../../../constants";
 import { validationSchemaPost } from "../../../constants/Schema";
 import { useAddPostMutation } from "../../../redux/services/postApi";
-import { AddPostProps } from "../../../types";
+import { AddPostProps, Post } from "../../../types";
 import CustomForm from "../../Organisms/CustomForm/CustomForm";
 import CustomModal from "../../Organisms/CustomModal/CustomModal";
 
@@ -11,7 +11,7 @@ const AddPost: React.FC<AddPostProps> = ({ authors }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [addPost] = useAddPostMutation();
 
-  const handleAddPost = async (formData: any) => {
+  const handleAddPost = async (formData: Partial<Post>) => {
     try {
       await addPost({ ...formData, date: new Date().toISOString() }).unwrap();
       toast.success("پست جدید با موفقیت ایجاد شد!");
@@ -23,7 +23,7 @@ const AddPost: React.FC<AddPostProps> = ({ authors }) => {
 
   return (
     <>
-      <button onClick={() => setIsModalOpen(true)} className="bg-blue-600 ml-3 text-white px-3 py-2 rounded cursor-pointer hover:bg-blue-700 mb-2">
+      <button onClick={() => setIsModalOpen(true)} className="bg-primary ml-3 text-white px-3 py-2 rounded cursor-pointer hover:bg-secondary mb-2 transition-colors">
         افزودن پست جدید
       </button>
       <CustomModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
