@@ -46,7 +46,7 @@ If your backend server is built with Node.js and uses nodemon, start it with:
 
 
 ## Project Structure
-my-react-app/
+shatel-task/
 ├── public/                  # Static files (e.g., index.html)
 ├── src/                     # Source code
 │   ├── components/          # Reusable components
