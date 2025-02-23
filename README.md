@@ -14,13 +14,13 @@ This project is a modern React application built with TypeScript, Redux Toolkit 
 
 ## Installation
 
-1. **Clone the repository:**
-    ```
-    git clone https://github.com/nasrin-jafari/shatel-task
-   ```
-   ```
-   cd shatel-task
-   ```
+1.Clone the repository:
+```
+  git clone https://github.com/nasrin-jafari/shatel-task
+```
+```
+  cd shatel-task
+```
 
 2.Install dependencies: 
 ```
