@@ -15,23 +15,33 @@ This project is a modern React application built with TypeScript, Redux Toolkit 
 ## Installation
 
 1. **Clone the repository:**
-   git clone https://github.com/nasrin-jafari/shatel-task
+    ```
+    git clone https://github.com/nasrin-jafari/shatel-task
+   ```
+   ```
    cd shatel-task
+   ```
 
 2.Install dependencies: 
+```
   npm install
+```
 
 
 ## Running the Application
 Development Mode
 Start the development server with:
+```
     npm run dev
+```
 Then open your browser and navigate to http://localhost:3000 
 
 
 ## Production Build
 Create a production build by running:
+```
    npm run build
+```
 
 
 ## Running Tests
@@ -41,7 +51,9 @@ Execute all tests (Jest with React Testing Library) in watch mode:
 
 ## Running the Backend Server
 If your backend server is built with Node.js and uses nodemon, start it with:
+```
    nodemon server/index.js
+```
 
 
 
