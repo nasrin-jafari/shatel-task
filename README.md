@@ -46,6 +46,7 @@ If your backend server is built with Node.js and uses nodemon, start it with:
 
 
 ## Project Structure
+```
 shatel-task/
 ├── public/                  # Static files (e.g., index.html)
 ├── src/                     # Source code
@@ -62,4 +63,5 @@ shatel-task/
 ├── tsconfig.json            # TypeScript configuration
 ├── webpack.config.js        # Webpack configuration
 └── .gitignore               # Files ignored by Git
+```
 
