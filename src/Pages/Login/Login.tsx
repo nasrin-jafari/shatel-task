@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { useLoginMutation } from "../../redux/services/authApi";
 import { loginFields } from "../../constants";
-import { validationSchema } from "../../constants/Schema";
+import { validationSchemaLogin } from "../../constants/Schema";
 import CustomForm from "../../components/Organisms/CustomForm/CustomForm";
 
 const Login = () => {
@@ -23,7 +23,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <CustomForm defaultValues={{ username: "", password: "" }} fields={loginFields} validationSchema={validationSchema} onSubmit={handleLogin} textBtn={isLoading ? "در حال ورود..." : "ورود"} />
+      <CustomForm defaultValues={{ username: "", password: "" }} fields={loginFields} validationSchema={validationSchemaLogin} onSubmit={handleLogin} textBtn={isLoading ? "در حال ورود..." : "ورود"} />
     </div>
   );
 };

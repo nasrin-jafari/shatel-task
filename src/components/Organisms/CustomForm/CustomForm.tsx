@@ -1,4 +1,4 @@
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup"; // Import yupResolver
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { CustomFormProps } from "../../../types";
@@ -11,7 +11,7 @@ const CustomForm: React.FC<CustomFormProps> = ({ fields, validationSchema, onSub
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: validationSchema ? yupResolver(validationSchema) : undefined,
+    resolver: validationSchema ? yupResolver(validationSchema) : undefined, // Use yupResolver
     defaultValues,
   });
 
@@ -30,9 +30,11 @@ const CustomForm: React.FC<CustomFormProps> = ({ fields, validationSchema, onSub
               {field.label}
             </label>
           )}
+
           <Controller
             name={field.name}
             control={control}
+            defaultValue={defaultValues[field.name] || ""} // Ensure controlled component
             render={({ field: controllerField }) => (
               <>
                 {field.type === "select" ? (
@@ -52,7 +54,7 @@ const CustomForm: React.FC<CustomFormProps> = ({ fields, validationSchema, onSub
                       const selectedValues = Array.from(e.target.selectedOptions, (option) => option.value);
                       controllerField.onChange(selectedValues);
                     }}
-                    className="w-fullp-[10px] mb-[10px] border border-gray-300 rounded-[5px]text-sm"
+                    className="w-full p-[10px] mb-[10px] border border-gray-300 rounded-[5px] text-sm"
                   >
                     {field.options?.map((option) => (
                       <option key={option.value} value={option.value}>
@@ -61,24 +63,24 @@ const CustomForm: React.FC<CustomFormProps> = ({ fields, validationSchema, onSub
                     ))}
                   </select>
                 ) : field.type === "checkbox" ? (
-                  <div className="flex items-centermb-[10px]">
+                  <div className="flex items-center mb-[10px]">
                     <input type="checkbox" id={field.name} {...controllerField} checked={!!controllerField.value} className="mr-2" />
                     <label htmlFor={field.name}>{field.label}</label>
                   </div>
                 ) : field.type === "textarea" ? (
-                  <textarea {...controllerField} id={field.name} rows={4} className="w-fullp-[10px] mb-[10px] border border-gray-300 rounded-[5px]text-smresize-none" />
+                  <textarea {...controllerField} id={field.name} rows={4} className="w-full p-[10px] mb-[10px] border border-gray-300 rounded-[5px] text-sm resize-none" />
                 ) : (
-                  <input {...controllerField} id={field.name} type={field.type} onChange={(e) => controllerField.onChange(e.target.value.trim())} className="w-fullp-[10px] mb-[10px] border border-gray-300 rounded-[5px]text-sm" />
+                  <input {...controllerField} id={field.name} type={field.type} onChange={(e) => controllerField.onChange(e.target.value.trim())} className="w-full p-[10px] mb-[10px] border border-gray-300 rounded-[5px] text-sm" />
                 )}
 
-                {errors[field.name] && <p className="text-red-500text-xsmt-[-8px]mb-[10px] ">{errors[field.name]?.message as string}</p>}
+                {errors[field.name] && <p className="text-red-500 text-xs mt-[-8px] mb-[10px] ">{errors[field.name]?.message as string}</p>}
               </>
             )}
           />
         </div>
       ))}
 
-      <button type="submit" className="w-fullp-[10px]bg-[#007bff]text-whiterounded-[5px]text-[16px]cursor-pointermt-[10px]hover:bg-[#0056b3]">
+      <button type="submit" className="w-full p-[10px] bg-[#007bff] text-white rounded-[5px] text-[16px] cursor-pointer mt-[10px] hover:bg-[#0056b3]">
         {textBtn ?? "ارسال"}
       </button>
       {children}

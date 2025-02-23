@@ -9,16 +9,13 @@ const Posts: React.FC = () => {
   const [filter, setFilter] = useState("");
   const { data: posts = [], isLoading: isPostsLoading } = useGetPostsQuery();
   const { data: authors = [] } = useGetAuthorsQuery();
-  const filteredPosts = posts.filter((post) => post.title.toLowerCase().includes(filter.toLowerCase()));
+  const filteredPosts = posts.filter((post) => post?.title?.toLowerCase().includes(filter.toLowerCase()));
 
   return (
     <div className="p-5">
       <h2 className="text-xl font-bold mb-4">لیست پست‌ها</h2>
       <AddPost
-        authors={authors.map((author) => ({
-          label: author.name,
-          value: author.id,
-        }))}
+        authors={authors}
       />
       <SearchPost value={filter} onChange={(e) => setFilter(e.target.value)} />
       {isPostsLoading ? <p>در حال بارگذاری...</p> : <PostList posts={filteredPosts} authors={authors} />}

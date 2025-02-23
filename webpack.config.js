@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: "development", // می‌توانید در حالت production هم قرار دهید
+  mode: "development",
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -17,13 +17,20 @@ module.exports = {
     port: 3000,
     open: true,
     hot: true,
-    historyApiFallback: true,
+    historyApiFallback: { index: "/index.html" },
+    client: {
+      overlay: true,
+    },
   },
+
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: "ts-loader",
+        use: {
+          loader: "ts-loader",
+          options: { transpileOnly: true },
+        },
         exclude: /node_modules/,
       },
       {
@@ -41,7 +48,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html", // این فایل را به‌زودی خواهیم ساخت
+      template: "./public/index.html",
     }),
     new MiniCssExtractPlugin(),
   ],

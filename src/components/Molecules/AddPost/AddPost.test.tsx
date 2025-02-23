@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import AddPost from "./AddPost";
+import { toast } from "react-toastify";
 
 jest.mock("react-toastify", () => ({
   toast: {
@@ -15,7 +16,11 @@ jest.mock("../../../redux/services/postApi", () => ({
 }));
 
 describe("AddPost Component", () => {
-  const authors = [{ label: "Alice", value: "1" }];
+  const authors = [{ id: "1", name: "Alice" }];
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
   test("opens modal, submits form, and shows success toast", async () => {
     mockAddPostFn.mockReturnValueOnce({
@@ -31,6 +36,9 @@ describe("AddPost Component", () => {
     fireEvent.change(screen.getByLabelText(/عنوان/i), {
       target: { value: "عنوان تستی" },
     });
+    fireEvent.change(screen.getByLabelText(/محتوا/i), {
+      target: { value: "محتوای تستی" },
+    });
     fireEvent.change(screen.getByLabelText(/نویسنده/i), {
       target: { value: "1" },
     });
@@ -41,7 +49,6 @@ describe("AddPost Component", () => {
       expect(mockAddPostFn).toHaveBeenCalled();
     });
 
-    const { toast } = require("react-toastify");
     expect(toast.success).toHaveBeenCalledWith("پست جدید با موفقیت ایجاد شد!");
   });
 
@@ -57,6 +64,12 @@ describe("AddPost Component", () => {
 
     fireEvent.change(screen.getByLabelText(/عنوان/i), {
       target: { value: "عنوان ناموفق" },
+    });
+    fireEvent.change(screen.getByLabelText(/محتوا/i), {
+      target: { value: "محتوای ناموفق" },
+    });
+    fireEvent.change(screen.getByLabelText(/نویسنده/i), {
+      target: { value: "1" },
     });
 
     fireEvent.click(screen.getByRole("button", { name: /ارسال/i }));

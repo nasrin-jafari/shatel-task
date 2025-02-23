@@ -67,3 +67,7 @@ export interface CustomModalProps {
   onClose: () => void;
   children: React.ReactNode;
 }
+export interface AddPostProps {
+  authors: { id: string; name: string }[];
+}
+export const __TYPES_VERSION__ = 1;

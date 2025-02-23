@@ -43,7 +43,14 @@ const PostList: React.FC<PostListProps> = ({ posts, authors }) => {
       header: "زمان انتشار",
       cell: ({ getValue }) => {
         const dateValue = getValue() as string;
-        return formatDistanceToNow(new Date(dateValue), { addSuffix: true });
+        const parsedDate = new Date(dateValue);
+
+        // Check if the date is valid before attempting to format it
+        if (isNaN(parsedDate.getTime())) {
+          return "زمان نامعتبر";
+        }
+
+        return formatDistanceToNow(parsedDate, { addSuffix: true });
       },
     },
   ];

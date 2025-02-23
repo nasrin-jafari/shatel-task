@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-import { useEditPostMutation } from "../../../redux/services/postApi";
 import { toast } from "react-toastify";
+import { validationSchemaPost } from "../../../constants/Schema";
+import { useEditPostMutation } from "../../../redux/services/postApi";
 import { EditPostProps, Post } from "../../../types";
 import CustomForm from "../../Organisms/CustomForm/CustomForm";
 import CustomModal from "../../Organisms/CustomModal/CustomModal";
+import { postFields } from "../../../constants";
 
 const EditPost: React.FC<EditPostProps> = ({ post, authors, onClose }) => {
   const [editPost] = useEditPostMutation();
@@ -26,26 +28,7 @@ const EditPost: React.FC<EditPostProps> = ({ post, authors, onClose }) => {
   return (
     <CustomModal isOpen={!!post} onClose={onClose}>
       <h3>ویرایش پست</h3>
-      {post && (
-        <CustomForm
-          fields={[
-            { name: "title", label: "عنوان", type: "text" },
-            { name: "content", label: "محتوا", type: "textarea" },
-            {
-              name: "userId",
-              label: "نویسنده",
-              type: "select",
-              options: authors.map((author) => ({
-                label: author.name,
-                value: author.id,
-              })),
-            },
-          ]}
-          defaultValues={post}
-          onSubmit={handleEdit}
-          textBtn={isSubmitting ? "در حال ویرایش..." : "ویرایش"}
-        />
-      )}
+      {post && <CustomForm fields={postFields(authors)} defaultValues={post} onSubmit={handleEdit} validationSchema={validationSchemaPost} textBtn={isSubmitting ? "در حال ویرایش..." : "ویرایش"} />}
     </CustomModal>
   );
 };
