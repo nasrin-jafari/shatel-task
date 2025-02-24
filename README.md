@@ -1,4 +1,4 @@
-# My React App
+# Shatel Task
 
 This project is a modern React application built with TypeScript, Redux Toolkit (including RTK Query), React Router, Tailwind CSS, Webpack, Babel, and Jest with React Testing Library. The backend is implemented with Node.js and is run using nodemon.
 
