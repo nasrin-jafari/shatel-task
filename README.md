@@ -54,10 +54,11 @@ npm run test
 ## Running the Backend Server
 If your backend server is built with Node.js and uses nodemon, start it with:
 ```
-nodemon server/index.js
+cd server
+npm i
+cd ..
+node server/index.js
 ```
-
-
 
 ## Project Structure
 ```
